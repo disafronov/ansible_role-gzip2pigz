@@ -1,0 +1,24 @@
+---
+
+- name: Install pigz
+  ansible.builtin.package:
+    name: pigz
+    state: present
+
+- name: Create symlink for gzip to pigz
+  ansible.builtin.file:
+    src: /usr/bin/pigz
+    dest: /usr/local/bin/gzip
+    owner: root
+    group: root
+    state: link
+    follow: false
+
+- name: Create symlink for gunzip to unpigz
+  ansible.builtin.file:
+    src: /usr/bin/unpigz
+    dest: /usr/local/bin/gunzip
+    owner: root
+    group: root
+    state: link
+    follow: false
